@@ -1,14 +1,14 @@
 CREATE TABLE Joueur(
-                       ID_joueur Integer auto_increment,
-                       Numéro_de_license VARCHAR(50),
-                       Statut VARCHAR(50),
-                       Poste_préféré VARCHAR(50),
-                       Date_naissance DATE,
-                       Poids DOUBLE,
-                       Taille DOUBLE,
-                       Nom VARCHAR(50),
-                       Prénom VARCHAR(50),
-                       PRIMARY KEY(ID_joueur)
+ID_joueur Integer auto_increment,
+Numéro_de_license VARCHAR(50),
+Statut VARCHAR(50),
+Poste_préféré VARCHAR(50),
+Date_naissance DATE,
+Poids DOUBLE,
+Taille DOUBLE,
+Nom VARCHAR(50),
+Prénom VARCHAR(50),
+PRIMARY KEY(ID_joueur)
 );
 
 CREATE TABLE Match_de_League_of_Legends(
