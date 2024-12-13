@@ -1,0 +1,38 @@
+services:
+  web:
+    build:
+      context: ./apache
+      dockerfile: Dockerfile
+    ports:
+      - 8090:80
+    volumes:
+      - volume-apache:/etc/apache2/sites-enabled
+      - ./php:/var/www/html
+    depends_on:
+      - postgres
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    ports:
+      - 8080:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_DISABLE_POSTFIX: 'True'
+    depends_on:
+      - postgres
+  postgres:
+    build:
+      context: ./postgres
+      dockerfile: Dockerfile
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: database
+    volumes:
+      - postgresdata:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+
+volumes:
+  postgresdata: {}
+  volume-apache:
