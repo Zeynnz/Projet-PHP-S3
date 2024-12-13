@@ -1,4 +1,5 @@
-CREATE TABLE Joueur (
+
+CREATE TABLE IF NOT EXISTS Joueur (
                         ID_joueur SERIAL,
                         Numéro_de_license VARCHAR(50),
                         Statut VARCHAR(50),
@@ -11,7 +12,7 @@ CREATE TABLE Joueur (
                         PRIMARY KEY(ID_joueur)
 );
 
-CREATE TABLE Match_de_League_of_Legends (
+CREATE TABLE IF NOT EXISTS Match_de_League_of_Legends (
                                             Id_Match_de_League_of_Legends SERIAL,
                                             Date___Heure_match TIMESTAMP,
                                             Nom_equipe_VS VARCHAR(50),
@@ -20,14 +21,14 @@ CREATE TABLE Match_de_League_of_Legends (
                                             PRIMARY KEY(Id_Match_de_League_of_Legends)
 );
 
-CREATE TABLE Coach (
+CREATE TABLE IF NOT EXISTS Coach (
                        Id_Coach SERIAL,
                        Identifiant VARCHAR(50),
                        mdp VARCHAR(50),
                        PRIMARY KEY(Id_Coach)
 );
 
-CREATE TABLE Commentaire (
+CREATE TABLE IF NOT EXISTS Commentaire (
                              Id_Commentaire SERIAL,
                              Commentaire VARCHAR(50),
                              ID_joueur INT NOT NULL,
@@ -35,7 +36,7 @@ CREATE TABLE Commentaire (
                              FOREIGN KEY(ID_joueur) REFERENCES Joueur(ID_joueur)
 );
 
-CREATE TABLE Participer (
+CREATE TABLE IF NOT EXISTS Participer (
                             ID_joueur INT,
                             Id_Match_de_League_of_Legends INT,
                             Note_individuel INT,
