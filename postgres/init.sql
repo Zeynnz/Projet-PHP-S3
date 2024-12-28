@@ -1,7 +1,7 @@
 
 CREATE TABLE IF NOT EXISTS Joueur (
             Id_Joueur SERIAL,
-            Numero_License VARCHAR(50),
+            Numero_Licence VARCHAR(50),
             Statut VARCHAR(50),
             Poste_Prefere VARCHAR(50),
             Date_Naissance DATE,

@@ -25,7 +25,6 @@ abstract class DAO
             // Set error mode to exception
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            echo "Connected to the database successfully!";
         } catch (PDOException $e) {
             // Handle connection errors
             echo "Database connection failed: " . $e->getMessage();
@@ -35,7 +34,10 @@ abstract class DAO
     // Abstract methods for the child classes to implement
     abstract function Ajouter();
     abstract function Supprimer();
-    abstract function Modifier();
+    abstract function Modifier($id_joueur,$numero_licence,$statut,$poste_prefere,$date_naissance,$poids,$taille,$nom,$prenom);
+    abstract function getOne($id_joueur);
+
+    abstract function getAll();
 
     // Method to test the database connection
     public function testerConnexion()

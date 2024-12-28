@@ -7,7 +7,11 @@ class TestConnexionDAO extends DAO
 {
     public function Ajouter() {}
     public function Supprimer() {}
-    public function Modifier() {}
+    public function Modifier($id_joueur, $numero_licence, $statut, $poste_prefere, $date_naissance, $poids, $taille, $nom, $prenom) {}
+
+    function getAll(){}
+
+    function getOne($id_joueur){}
 }
 
 // Tester la connexion

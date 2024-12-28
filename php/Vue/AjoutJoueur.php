@@ -22,12 +22,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Appeler la méthode execute
     $result = $ajouterJoueur->execute();
 
-    // Vérifier le résultat et afficher un message
     if ($result) {
-        echo "Le joueur a été ajouté avec succès.";
-    } else {
-        echo "Une erreur est survenue lors de l'ajout du joueur.";
+        header('Location: joueurs.php');
+        exit(); // Assurez-vous d'arrêter le script après la redirection
     }
+
 }
 ?>
 <!DOCTYPE html>
