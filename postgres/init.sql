@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS Matchs (
 CREATE TABLE IF NOT EXISTS Coach (
             Id_Coach SERIAL,
             Identifiant VARCHAR(50),
-            Mdp VARCHAR(50),
+            Mdp VARCHAR(255),
             PRIMARY KEY(Id_Coach)
 );
 

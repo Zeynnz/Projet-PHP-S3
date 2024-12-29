@@ -19,7 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_joueur'])) {
     // Instanciez la classe SupprimerJoueur
     $supprimerJoueur = new SupprimerJoueur();
     $supprimerJoueur->executer($id_joueur);
-
+    header("Location: joueurs.php"); // Redirection pour que le cookie soit pris en compte
+    exit();
 }
 
 ?>

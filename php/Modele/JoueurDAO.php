@@ -15,7 +15,7 @@ class JoueurDAO extends DAO
         parent::__construct();
     }
 
-    function Ajouter($NumLicence="", $Statut = "",$PostePrefere="",$DateNaissance="",$Poids=0,$Taille=0,$Nom="",$Prenom="")
+    function Ajouter($NumLicence="", $Statut = "",$PostePrefere="",$DateNaissance="",$Poids=0,$Taille=0,$Nom="",$Prenom=""): Joueur
     {
         $add = $this->pdo->prepare('INSERT INTO joueur(numero_licence, statut, poste_prefere, date_naissance, poids, taille, nom, prenom) 
         VALUES(:numero_licence, :statut, :poste_prefere, :date_naissance, :poids, :taille, :nom, :prenom)');

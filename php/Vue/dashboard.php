@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+<?php
+session_start();
+?>
+
+
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -14,11 +18,11 @@
         <a href="matchs.php">Gérer les Matchs</a>
         <a href="feuille_match.php">Créer Feuille de Match</a>
         <a href="statistiques.php">Statistiques</a>
-        <a href="logout.php">Déconnexion</a>
+        <a href="index.php">Déconnexion</a>
     </nav>
 </header>
 <main>
-    <p>Bienvenue dans l'application de gestion sportive !</p>
+    <p>Bienvenue dans l'application de gestion sportive <?php echo $_SESSION['login'] ?> !</p>
 </main>
 </body>
 </html>
