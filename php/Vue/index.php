@@ -5,6 +5,14 @@ require_once __DIR__ . '/../Controleur/GetAllCoachs.php';
 
 session_start();
 
+if (isset($_COOKIE['user_login'])) {
+    $_SESSION['connexion'] = true;
+    $_SESSION['login'] = $_COOKIE['user_login'];
+    header('Location: dashboard.php');
+    exit;
+}
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $login = trim($_POST['login']);
     $password = trim($_POST['password']);
@@ -19,6 +27,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Authentification réussie
             $_SESSION['connexion'] = true;
             $_SESSION['login'] = $login;
+
+            // Crée un cookie pour maintenir la connexion
+            setcookie('user_login', $login, time() + (86400 * 30), "/"); // Cookie valide 30 jours
+
             header('Location: dashboard.php');
             exit;
         }
