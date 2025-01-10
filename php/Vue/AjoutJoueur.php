@@ -59,7 +59,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         <div>
             <label for="poste">Poste :</label>
-            <input type="text" id="poste" name="poste" required>
+            <select id="poste" name="poste" required>
+                <option value="Top">Top</option>
+                <option value="Jungle">Jungle</option>
+                <option value="Mid">Mid</option>
+                <option value="Adc">Adc</option>
+                <option value="Support">Support</option>
+            </select>
         </div>
         <div>
             <label for="date_naissance">Date de Naissance :</label>
