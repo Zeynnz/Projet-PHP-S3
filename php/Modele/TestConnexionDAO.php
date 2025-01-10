@@ -5,7 +5,7 @@ require_once __DIR__ . '/DAO.php'; // Inclure DAO.php
 
 class TestConnexionDAO extends DAO
 {
-    public function Ajouter() {}
+    public function Ajouter($identifiant, $mdp) {}
     public function Supprimer() {}
     public function Modifier($id_joueur, $numero_licence, $statut, $poste_prefere, $date_naissance, $poids, $taille, $nom, $prenom) {}
 
