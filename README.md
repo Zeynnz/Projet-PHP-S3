@@ -27,7 +27,7 @@ L'option `-v` permet de supprimer les volumes.
 
 Le projet est accessible à l'adresse suivante :
 - Le site web : [localhost](http://localhost:8090/Vue/)
-- Le PostgeAdmin : [localhost:8080](http://localhost:7080)
+- Le PostgeAdmin : [localhost:7080](http://localhost:7080)
 
 ## Utilisation PostgeAdmin
 
