@@ -74,8 +74,9 @@ class JoueurDAO extends DAO
 
     function getOne($id_joueur)
     {
-        $query = $this->pdo->query('SELECT * FROM joueur');
-        $joueurs = $query->fetchAll(PDO::FETCH_ASSOC);
+        $query = $this->pdo->prepare('SELECT * FROM joueur');
+        $query->execute(array('id_joueur' => $id_joueur));
+        $joueurs = $query->fetch(PDO::FETCH_ASSOC);
 
         foreach ($joueurs as $joueur) {
             if ($joueur->id_joueur = $id_joueur) {
@@ -88,8 +89,9 @@ class JoueurDAO extends DAO
 
     function getAll(): array
     {
-        $query = $this->pdo->query('SELECT * FROM joueur');
-        $joueurs = $query->fetchAll(PDO::FETCH_ASSOC);
+        $query = $this->pdo->prepare('SELECT * FROM joueur');
+        $query->execute(array());
+        $joueurs = $query->fetchAll();
 
         return $joueurs;
     }

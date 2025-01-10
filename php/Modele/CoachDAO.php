@@ -29,8 +29,9 @@ class CoachDAO extends DAO
 
 
     function getOne($id_coach){
-        $query = $this->pdo->query('SELECT * FROM coach');
-        $coachs = $query->fetchAll(PDO::FETCH_ASSOC);
+        $query = $this->pdo->prepare('SELECT * FROM coach');
+        $query->execute(array("id_coach" =>$id_coach));
+        $coachs = $query->fetch(PDO::FETCH_ASSOC);
 
         foreach ($coachs as $coach) {
             if ($coach->id_coach = $id_coach) {
@@ -41,11 +42,10 @@ class CoachDAO extends DAO
 
     }
 
-
     function getAll(): array{
-        $stmt = $this->pdo->query("SELECT * FROM coach");
+        $stmt = $this->pdo->prepare("SELECT * FROM coach");
         $coachs = [];
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        while ($row = $stmt->execute(array())) {
             $coachs[] = new Coach($row['identifiant'], $row['mdp']);
         }
         return $coachs;
