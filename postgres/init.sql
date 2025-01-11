@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS Coach (
 
 CREATE TABLE IF NOT EXISTS Commentaire (
             Id_Commentaire SERIAL,
-            Commentaire VARCHAR(50),
+            Commentaire TEXT,
             Id_Joueur INT NOT NULL,
             PRIMARY KEY(Id_Commentaire),
             FOREIGN KEY(ID_Joueur) REFERENCES Joueur(ID_Joueur)
