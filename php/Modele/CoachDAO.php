@@ -13,7 +13,7 @@ class CoachDAO extends DAO
         parent::__construct();
     }
 
-    function Ajouter($identifiant,$mdp): Coach
+    function Ajouter($identifiant,$mdp,$unused1=null,$unused2=null,$unused3=null): Coach
     {
         $add = $this->pdo->prepare('INSERT INTO coach(identifiant, mdp) 
         VALUES(:identifiant, :mdp)');
@@ -25,7 +25,7 @@ class CoachDAO extends DAO
         return new coach($identifiant,$mdp);
     }
 
-    function Supprimer(){}
+    function Supprimer($id){}
 
 
     function getOne($id_coach){
@@ -44,8 +44,9 @@ class CoachDAO extends DAO
 
     function getAll(): array{
         $stmt = $this->pdo->prepare("SELECT * FROM coach");
+        $stmt->execute();
         $coachs = [];
-        while ($row = $stmt->execute(array())) {
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $coachs[] = new Coach($row['identifiant'], $row['mdp']);
         }
         return $coachs;
