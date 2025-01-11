@@ -33,7 +33,7 @@ class JoueurDAO extends DAO
         return new joueur($NumLicence,$Statut,$PostePrefere,$DateNaissance,$Poids,$Taille,$Nom,$Prenom);
     }
 
-    function Supprimer($id_joueur=0)
+    function Supprimer($id_joueur)
     {
         $delete = $this->pdo->prepare('DELETE FROM joueur WHERE id_joueur = :id_joueur');
         $delete->execute(array('id_joueur' => $id_joueur));
@@ -74,22 +74,32 @@ class JoueurDAO extends DAO
 
     function getOne($id_joueur)
     {
-        $query = $this->pdo->prepare('SELECT * FROM joueur');
+        $query = $this->pdo->prepare('SELECT * FROM joueur WHERE id_joueur = :id_joueur');
         $query->execute(array('id_joueur' => $id_joueur));
-        $joueurs = $query->fetchAll();
+        $joueur = $query->fetch();
 
-        foreach ($joueurs as $joueur) {
-            if ($joueur->id_joueur = $id_joueur) {
-                return $joueur;
-            }
+        if ($joueur) {
+            // Si un joueur est trouvé, renvoyez un objet Joueur
+            return new Joueur(
+                $joueur['numero_licence'],
+                $joueur['statut'],
+                $joueur['poste_prefere'],
+                $joueur['date_naissance'],
+                $joueur['poids'],
+                $joueur['taille'],
+                $joueur['nom'],
+                $joueur['prenom']
+            );
         }
-        return new Joueur($joueur->numero_licence, $joueur->statut, $joueur->poste_prefere, $joueur->date_naissance, $joueur->poids, $joueur->taille, $joueur->nom, $joueur->prenom);
 
+        // Retournez null si aucun joueur n'est trouvé
+        return null;
     }
+
 
     function getAll(): array
     {
-        $query = $this->pdo->prepare('SELECT * FROM joueur');
+        $query = $this->pdo->prepare('SELECT * FROM joueur ORDER BY 1');
         $query->execute(array());
         $joueurs = $query->fetchAll();
 

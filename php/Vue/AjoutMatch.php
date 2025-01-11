@@ -14,13 +14,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $resultat = $_POST['resultat'];
 
 
-    $ajoutMatch = new AjouterMatch($date_match,$heure_match,$nom_equipe_vs,$lieu_rencontre,$resultat);
-    // Appeler la méthode execute
-    $result = $ajoutMatch->execute();
+    if (!preg_match('/^\d+-\d+$/', $resultat)) {
+        $error_message = "Le format du résultat doit être sous la forme 'chiffre-chiffre' (exemple : 2-1).";
+    } else {
+        // Si le format est correct, ajouter le match
+        $ajoutMatch = new AjouterMatch($date_match, $heure_match, $nom_equipe_vs, $lieu_rencontre, $resultat);
+        $result = $ajoutMatch->execute();
 
-    if ($result) {
-        header('Location: matchs.php');
-        exit(); // Assurez-vous d'arrêter le script après la redirection
+        if ($result) {
+            header('Location: matchs.php');
+            exit(); // Arrêter le script après la redirection
+        }
     }
 
 }
@@ -30,14 +34,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ajouter un Joueur</title>
+    <title>Ajouter un Match</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <header>
-    <h1>Ajouter un Joueur</h1>
+    <h1>Ajouter un Match</h1>
     <nav>
-        <a href="joueurs.php">Retour</a>
+        <a href="matchs.php">Retour</a>
     </nav>
 </header>
 <main>
@@ -63,6 +67,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="text" id="resultat" name="resultat" required>
         </div>
 
+        <?php if (isset($error_message)) : ?>
+            <p style="color: red;"><?= htmlspecialchars($error_message) ?></p>
+        <?php endif; ?>
 
         <div>
             <button type="submit">Ajouter</button>
