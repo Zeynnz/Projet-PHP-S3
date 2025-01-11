@@ -28,7 +28,11 @@ class MatchDAO extends DAO
             'resultat' => $Resultat,
         ));
 
-        return new Matchs($Date_match,$Heure_match,$Nom_Equipe_VS,$Lieu_Rencontre,$Resultat);
+        if($add->rowCount() > 0){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     function Supprimer($id_match)
@@ -63,7 +67,11 @@ class MatchDAO extends DAO
             'resultat' => $Resultat,
         ));
 
-        return new Matchs($Date_match,$Heure_match,$Nom_Equipe_VS,$Lieu_Rencontre,$Resultat);
+        if($alter->rowCount() > 0){
+            return true;
+        }else{
+            return false;
+        }
 
     }
 

@@ -15,7 +15,7 @@ class JoueurDAO extends DAO
         parent::__construct();
     }
 
-    function Ajouter($NumLicence="", $Statut = "",$PostePrefere="",$DateNaissance="",$Poids=0,$Taille=0,$Nom="",$Prenom=""): Joueur
+    function Ajouter($NumLicence="", $Statut = "",$PostePrefere="",$DateNaissance="",$Poids=0,$Taille=0,$Nom="",$Prenom="")
     {
         $add = $this->pdo->prepare('INSERT INTO joueur(numero_licence, statut, poste_prefere, date_naissance, poids, taille, nom, prenom) 
         VALUES(:numero_licence, :statut, :poste_prefere, :date_naissance, :poids, :taille, :nom, :prenom)');
@@ -30,7 +30,11 @@ class JoueurDAO extends DAO
             'prenom' => $Prenom
         ));
 
-        return new joueur($NumLicence,$Statut,$PostePrefere,$DateNaissance,$Poids,$Taille,$Nom,$Prenom);
+        if($add->rowCount() > 0){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     function Supprimer($id_joueur)
@@ -68,7 +72,11 @@ class JoueurDAO extends DAO
                 'prenom' => $prenom,
             ));
 
-            return new Joueur($numero_licence,$statut,$poste_prefere,$date_naissance,$poids,$taille,$nom,$prenom);
+        if($alter->rowCount() > 0){
+            return true;
+        }else{
+            return false;
+        }
 
     }
 

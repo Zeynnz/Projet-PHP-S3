@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_joueur'])) {
                     <td>
                         <form method="POST" action="joueurs.php" >
                             <input type="hidden" name="id_joueur" value="<?php echo htmlspecialchars($joueur['id_joueur']); ?>">
-                            <button type="submit">Supprimer</button>
+                            <button id="supprimer" type="submit">Supprimer</button>
                         </form>
                     </td>
                     <td>
@@ -96,8 +96,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_joueur'])) {
                             <input type="hidden" name="id_joueur" value="<?php echo htmlspecialchars($joueur['id_joueur']); ?>">
                             <button type="submit">Commentaires</button>
                         </form>
-
-
                     </td>
                 </tr>
                 <?php endforeach; ?>
@@ -109,10 +107,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_joueur'])) {
 <style>
     main {
         margin: 20px auto;
-        max-width: 60em;
+        max-width: 70em;
         padding: 1em;
         background: white;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    #supprimer{
+        background: #dc3545;
     }
 </style>
 </html>

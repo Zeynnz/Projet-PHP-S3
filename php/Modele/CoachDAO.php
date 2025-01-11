@@ -14,7 +14,7 @@ class CoachDAO extends DAO
         parent::__construct();
     }
 
-    function Ajouter($identifiant,$mdp): Coach
+    function Ajouter($identifiant,$mdp)
     {
         $query = $this->pdo->prepare('SELECT * FROM coach WHERE identifiant = :identifiant');
         $query->execute(array('identifiant' => $identifiant));
@@ -29,10 +29,11 @@ class CoachDAO extends DAO
         }
 
 
-        return new coach($identifiant,$mdp);
-    }
-
-    function Supprimer(){}
+        if($add->rowCount() > 0){
+            return true;
+        }else{
+            return false;
+        }    }
 
 
     function getOne($id_coach){
@@ -50,14 +51,12 @@ class CoachDAO extends DAO
     }
 
     function getAll(): array {
-        $stmt = $this->pdo->prepare("SELECT * FROM coach ORDER BY 1");
-        $stmt->execute();  // Exécuter la requête
+        $all = $this->pdo->prepare("SELECT * FROM coach ORDER BY 1");
+        $all->execute();  // Exécuter la requête
         $coachs = [];
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {  // Récupérer chaque ligne de résultat
+        while ($row = $all->fetch(PDO::FETCH_ASSOC)) {  // Récupérer chaque ligne de résultat
             $coachs[] = new Coach($row['identifiant'], $row['mdp']);
         }
         return $coachs;
     }
-
-    function Modifier($id_joueur, $numero_licence, $statut, $poste_prefere, $date_naissance, $poids, $taille, $nom, $prenom){}
 }

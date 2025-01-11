@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_match'])) {
             <td>
                 <form method="post" action="matchs.php">
                     <input type="hidden" name="id_match" value="<?php echo htmlspecialchars($match['id_match']);?>">
-                    <button type="submit">Supprimer</button>
+                    <button id="supprimer" type="submit">Supprimer</button>
                 </form>
             </td>
         </tr>
@@ -90,6 +90,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_match'])) {
         padding: 1em;
         background: white;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    #supprimer{
+        background: #dc3545;
     }
 </style>
 </html>

@@ -18,7 +18,7 @@ class SupprimerJoueur
     }
 
 
-    public function executer()
+    public function executer(): bool
     {
         return $this->dao->Supprimer($this->id_joueur);
     }
