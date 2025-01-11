@@ -31,14 +31,6 @@ abstract class DAO
         }
     }
 
-    // Abstract methods for the child classes to implement
-    abstract function Ajouter($param1,$param2,$param3,$param4,$param5);
-    abstract function Supprimer($id);
-    abstract function Modifier($param1,$param2,$param3,$param4,$param5,$param6,$param7,$param8,$param9);
-    abstract function getOne($id_joueur);
-
-    abstract function getAll();
-
     // Method to test the database connection
     public function testerConnexion()
     {

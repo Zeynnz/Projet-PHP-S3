@@ -13,19 +13,25 @@ class CoachDAO extends DAO
         parent::__construct();
     }
 
-    function Ajouter($identifiant,$mdp,$unused1=null,$unused2=null,$unused3=null): Coach
+    function Ajouter($identifiant,$mdp): Coach
     {
-        $add = $this->pdo->prepare('INSERT INTO coach(identifiant, mdp) 
-        VALUES(:identifiant, :mdp)');
-        $add->execute(array(
-            'identifiant' => $identifiant,
-            'mdp' => $mdp
-        ));
+        $query = $this->pdo->prepare('SELECT * FROM coach WHERE identifiant = :identifiant');
+        $query->execute(array('identifiant' => $identifiant));
+        if ($query->rowCount() == 0) {
+            $add = $this->pdo->prepare('INSERT INTO coach(identifiant, mdp) VALUES(:identifiant, :mdp)');
+            $add->execute(array(
+                'identifiant' => $identifiant,
+                'mdp' => $mdp
+            ));
+        }else {
+            throw new Exception("Un coach avec cet identifiant existe déjà.");
+        }
+
 
         return new coach($identifiant,$mdp);
     }
 
-    function Supprimer($id){}
+    function Supprimer(){}
 
 
     function getOne($id_coach){
@@ -42,11 +48,11 @@ class CoachDAO extends DAO
 
     }
 
-    function getAll(): array{
+    function getAll(): array {
         $stmt = $this->pdo->prepare("SELECT * FROM coach");
-        $stmt->execute();
+        $stmt->execute();  // Exécuter la requête
         $coachs = [];
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {  // Récupérer chaque ligne de résultat
             $coachs[] = new Coach($row['identifiant'], $row['mdp']);
         }
         return $coachs;
