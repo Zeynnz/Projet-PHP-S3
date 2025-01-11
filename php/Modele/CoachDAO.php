@@ -50,7 +50,7 @@ class CoachDAO extends DAO
     }
 
     function getAll(): array {
-        $stmt = $this->pdo->prepare("SELECT * FROM coach");
+        $stmt = $this->pdo->prepare("SELECT * FROM coach ORDER BY 1");
         $stmt->execute();  // Exécuter la requête
         $coachs = [];
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {  // Récupérer chaque ligne de résultat

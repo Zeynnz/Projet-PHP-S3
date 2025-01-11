@@ -6,7 +6,7 @@ use Modele\JoueurDAO;
 
 require_once __DIR__ . '/../Modele/Joueur.php';
 require_once __DIR__ . '/../Modele/JoueurDAO.php';
-class modifierjoueur
+class ModifierJoueur
 {
     private $idJoueur;
     private $numeroLicence;

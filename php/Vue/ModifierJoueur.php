@@ -1,7 +1,7 @@
 <?php
 
-use Controleur\modifierjoueur;
-require_once __DIR__ . '/../Controleur/modifierjoueur.php';
+use Controleur\modifierJoueur;
+require_once __DIR__ . '/../Controleur/ModifierJoueur.php';
 
 $numeroLicence = $statut = $poste = $dateNaissance = $poids = $taille = $nom = $prenom = '';
 
@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Si le formulaire est soumis pour modification
         if (isset($_POST['modifier'])) {
-            $modifierJoueur = new modifierjoueur(
+            $modifierJoueur = new modifierJoueur(
                 $id_joueur,
                 $numeroLicence,
                 $statut,

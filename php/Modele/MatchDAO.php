@@ -2,7 +2,7 @@
 
 namespace Modele;
 
-use Modele\DAO;
+require 'DAO.php';
 
 require_once 'DAO.php';
 
@@ -84,7 +84,7 @@ class MatchDAO extends DAO
 
     function getAll()
     {
-        $query = $this->pdo->prepare('SELECT * FROM matchs');
+        $query = $this->pdo->prepare('SELECT * FROM matchs ORDER BY 1');
         $query->execute(array());
         $matchs = $query->fetchAll();
 
