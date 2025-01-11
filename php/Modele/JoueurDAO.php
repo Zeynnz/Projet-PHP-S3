@@ -76,7 +76,7 @@ class JoueurDAO extends DAO
     {
         $query = $this->pdo->prepare('SELECT * FROM joueur');
         $query->execute(array('id_joueur' => $id_joueur));
-        $joueurs = $query->fetch(PDO::FETCH_ASSOC);
+        $joueurs = $query->fetchAll();
 
         foreach ($joueurs as $joueur) {
             if ($joueur->id_joueur = $id_joueur) {

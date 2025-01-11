@@ -14,7 +14,7 @@
     </nav>
 </header>
 <main>
-    <button>Ajouter un match</button>
+    <button onclick="window.location.href='AjoutMatch.php   '">Ajouter un match</button>
     <table>
         <thead>
         <tr>

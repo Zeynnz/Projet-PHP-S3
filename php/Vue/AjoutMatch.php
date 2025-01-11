@@ -1,21 +1,22 @@
 <?php
 
-use Controleur\AjouterJoueur;
+use Controleur\AjouterMatch;
 
-require_once __DIR__ . '/../Controleur/AjouterJoueur.php';
+require_once __DIR__ . '/../Controleur/AjouterMatch.php';
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Récupérer les données du formulaire
-    $date_match = $_POST['numero_licence'];
-    $heure_match = $_POST['statut'];
-    $nom_equipe_vs = $_POST['poste'];
-    $lieu_rencontre = $_POST['date_naissance'];
-    $resultat = $_POST['poids'];
+    $date_match = $_POST['date_match'];
+    $heure_match = $_POST['heure_match'];
+    $nom_equipe_vs = $_POST['nom_equipe_vs'];
+    $lieu_rencontre = $_POST['lieu_rencontre'];
+    $resultat = $_POST['resultat'];
 
 
+    $ajoutMatch = new AjouterMatch($date_match,$heure_match,$nom_equipe_vs,$lieu_rencontre,$resultat);
     // Appeler la méthode execute
-    $result = ->execute();
+    $result = $ajoutMatch->execute();
 
     if ($result) {
         header('Location: matchs.php');

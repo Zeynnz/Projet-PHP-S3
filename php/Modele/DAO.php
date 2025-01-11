@@ -32,9 +32,9 @@ abstract class DAO
     }
 
     // Abstract methods for the child classes to implement
-    abstract function Ajouter($identifiant,$mdp);
-    abstract function Supprimer();
-    abstract function Modifier($id_joueur,$numero_licence,$statut,$poste_prefere,$date_naissance,$poids,$taille,$nom,$prenom);
+    abstract function Ajouter($param1,$param2,$param3,$param4,$param5);
+    abstract function Supprimer($id);
+    abstract function Modifier($param1,$param2,$param3,$param4,$param5,$param6,$param7,$param8,$param9);
     abstract function getOne($id_joueur);
 
     abstract function getAll();
