@@ -42,12 +42,14 @@ class CoachDAO extends DAO
 
     }
 
-    function getAll(): array{
+    function getAll(): array {
         $stmt = $this->pdo->prepare("SELECT * FROM coach");
+        $stmt->execute();  // Exécuter la requête
         $coachs = [];
-        while ($row = $stmt->execute(array())) {
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {  // Récupérer chaque ligne de résultat
             $coachs[] = new Coach($row['identifiant'], $row['mdp']);
         }
+
         return $coachs;
     }
 
