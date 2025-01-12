@@ -22,10 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Appeler la méthode execute
     $result = $ajouterJoueur->execute();
 
-    if ($result) {
-        header('Location: joueurs.php');
-        exit(); // Assurez-vous d'arrêter le script après la redirection
-    }
+    header('Location: joueurs.php');
+    exit(); // Assurez-vous d'arrêter le script après la redirection
+
 
 }
 ?>

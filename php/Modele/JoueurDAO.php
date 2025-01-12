@@ -2,7 +2,7 @@
 
 namespace Modele;
 
-use PDO;
+
 
 require_once 'DAO.php';
 
@@ -29,12 +29,6 @@ class JoueurDAO extends DAO
             'nom' => $Nom,
             'prenom' => $Prenom
         ));
-
-        if($add->rowCount() > 0){
-            return true;
-        }else{
-            return false;
-        }
     }
 
     function Supprimer($id_joueur)
@@ -109,6 +103,15 @@ class JoueurDAO extends DAO
     {
         $query = $this->pdo->prepare('SELECT * FROM joueur ORDER BY 1');
         $query->execute(array());
+        $joueurs = $query->fetchAll();
+
+        return $joueurs;
+    }
+
+    function getAllActif(): array
+    {
+        $query = $this->pdo->prepare('SELECT * FROM joueur WHERE statut = :statut ORDER BY 1');
+        $query->execute(array('statut' => 'Actif'));
         $joueurs = $query->fetchAll();
 
         return $joueurs;

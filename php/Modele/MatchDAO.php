@@ -2,10 +2,10 @@
 
 namespace Modele;
 
-require 'DAO.php';
+use PDO;
+
 
 require_once 'DAO.php';
-
 
 class MatchDAO extends DAO
 {
@@ -75,20 +75,23 @@ class MatchDAO extends DAO
 
     }
 
-    function getOne($id_match)
+    public function getOne($id_match)
     {
-        $query = $this->pdo->prepare('SELECT * FROM matchs');
+        $query = $this->pdo->prepare('SELECT * FROM matchs WHERE id_match = :id_match');
         $query->execute(array('id_match' => $id_match));
-        $matchs = $query->fetchAll();
+        $match = $query->fetch(PDO::FETCH_ASSOC); // Récupère une seule ligne sous forme de tableau associatif
 
-        foreach ($matchs as $match) {
-            if ($match->id_match = $id_match) {
-                return $match;
-            }
+        // Vérifiez si le match existe
+        if ($match) {
+            // Créez et renvoyez une instance de la classe Matchs
+            return $match;
+
         }
-        return new Matchs($match->date_match, $match->heure_match, $match->nom_equipe_vs, $match->lieu_rencontre, $match->resultat);
 
+        // Retournez null si aucun match trouvé
+        return null;
     }
+
 
     function getAll()
     {

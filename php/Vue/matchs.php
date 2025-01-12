@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_match'])) {
             <td><?php echo htmlspecialchars($match['nom_equipe_vs']);?></td>
             <td><?php echo htmlspecialchars($match['lieu_rencontre']);?></td>
             <td><?php echo htmlspecialchars($match['resultat']);?></td>
-            <td>
+            <td id="actions">
                 <form method="post" action="ModifierMatch.php">
                     <input type="hidden" name="id_match" value="<?php echo htmlspecialchars($match['id_match']);?>">
                     <input type="hidden" name="date_match" value="<?php echo htmlspecialchars($match['date_match']);?>">
@@ -69,11 +69,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_match'])) {
 
                     <button type="submit"> Modifier</button>
                 </form>
-            </td>
-            <td>
                 <form method="post" action="matchs.php">
                     <input type="hidden" name="id_match" value="<?php echo htmlspecialchars($match['id_match']);?>">
                     <button id="supprimer" type="submit">Supprimer</button>
+                </form>
+                <form method="post" action="feuille_match.php">
+                    <input type="hidden" name="id_match" value="<?php echo htmlspecialchars($match['id_match']);?>">
+                    <button id="feuilleMatch" type="submit">Feuille de match</button>
                 </form>
             </td>
         </tr>
@@ -93,6 +95,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_match'])) {
     }
     #supprimer{
         background: #dc3545;
+    }
+
+    #actions {
+        display: flex;
+        justify-content: center;
+    }
+
+    #actions button{
+        margin: 0 10px;
     }
 </style>
 </html>
