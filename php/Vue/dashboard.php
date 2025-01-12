@@ -16,7 +16,6 @@ session_start();
     <nav>
         <a href="joueurs.php">Gérer les Joueurs</a>
         <a href="matchs.php">Gérer les Matchs</a>
-        <a href="feuille_match.php">Créer Feuille de Match</a>
         <a href="statistiques.php">Statistiques</a>
         <a href="index.php">Déconnexion</a>
     </nav>
