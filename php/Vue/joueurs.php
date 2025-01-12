@@ -2,6 +2,11 @@
 
 namespace Vue;
 
+session_start();
+if($_SESSION['connexion']==false){
+    header('Location: index.php');
+    exit();
+}
 use Controleur\GetAllJoueurs;
 use Controleur\GetOneJoueur;
 use Controleur\SupprimerJoueur;
@@ -37,6 +42,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_joueur'])) {
     <header>
         <h1>Gestion des Joueurs</h1>
         <nav>
+            <a href="matchs.php">Gérer les Matchs</a>
+            <a href="statistiques.php">Statistiques</a>
             <a href="dashboard.php">Retour</a>
         </nav>
     </header>

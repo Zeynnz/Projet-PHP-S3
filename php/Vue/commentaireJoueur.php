@@ -1,5 +1,9 @@
 <?php
 session_start();
+if($_SESSION['connexion']==false){
+    header('Location: index.php');
+    exit();
+}
 
 use Controleur\GetAllCommentaire;
 use Controleur\GetOneJoueur;
@@ -44,6 +48,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_joueur']) && isset
 <header>
     <h1>Commentaires pour le Joueur</h1>
     <nav>
+        <a href="matchs.php">Gérer les Matchs</a>
+        <a href="statistiques.php">Statistiques</a>
         <a href="joueurs.php">Retour à la liste des joueurs</a>
     </nav>
 </header>

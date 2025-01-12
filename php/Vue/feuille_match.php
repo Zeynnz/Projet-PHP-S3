@@ -1,5 +1,9 @@
 <?php
 session_start();
+if($_SESSION['connexion']==false){
+    header('Location: index.php');
+    exit();
+}
 
 use Controleur\AjouterFeuille;
 use Controleur\GetAllJoueursActifs;
@@ -146,6 +150,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_match'])) {
         <p>Le match n'a pas été trouvé.</p>
     <?php endif; ?>
     <nav>
+        <a href="joueurs.php">Gérer les Joueurs</a>
+        <a href="statistiques.php">Statistiques</a>
         <a href="matchs.php">Retour</a>
     </nav>
 </header>

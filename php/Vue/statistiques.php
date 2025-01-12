@@ -1,3 +1,11 @@
+<?php
+session_start();
+if($_SESSION['connexion']==false){
+    header('Location: index.php');
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -10,6 +18,9 @@
 <header>
     <h1>Statistiques</h1>
     <nav>
+        <a href="joueurs.php">Gérer les Joueurs</a>
+        <a href="matchs.php">Gérer les Matchs</a>
+        <a href="statistiques.php">Statistiques</a>
         <a href="dashboard.php">Retour</a>
     </nav>
 </header>

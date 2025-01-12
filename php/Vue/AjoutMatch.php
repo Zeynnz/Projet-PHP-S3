@@ -1,5 +1,11 @@
 <?php
 
+session_start();
+if($_SESSION['connexion']==false){
+    header('Location: index.php');
+    exit();
+}
+
 use Controleur\AjouterMatch;
 
 require_once __DIR__ . '/../Controleur/AjouterMatch.php';
@@ -41,6 +47,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <header>
     <h1>Ajouter un Match</h1>
     <nav>
+        <a href="joueurs.php">Gérer les Joueurs</a>
+        <a href="statistiques.php">Statistiques</a>
         <a href="matchs.php">Retour</a>
     </nav>
 </header>

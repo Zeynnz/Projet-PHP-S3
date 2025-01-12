@@ -1,5 +1,11 @@
 <?php
 
+session_start();
+if($_SESSION['connexion']==false){
+    header('Location: index.php');
+    exit();
+}
+
 use Controleur\modifierJoueur;
 require_once __DIR__ . '/../Controleur/ModifierJoueur.php';
 
@@ -54,6 +60,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <header>
     <h1>Modifier un Joueur</h1>
     <nav>
+        <a href="matchs.php">Gérer les Matchs</a>
+        <a href="statistiques.php">Statistiques</a>
         <a href="joueurs.php">Retour</a>
     </nav>
 </header>

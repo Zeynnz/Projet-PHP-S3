@@ -11,6 +11,10 @@ require_once __DIR__ . "/../Controleur/GetOneCommentaire.php";
 
 
 session_start();
+if($_SESSION['connexion']==false){
+    header('Location: index.php');
+    exit();
+}
 
 
 
@@ -57,6 +61,9 @@ if (isset($_POST['modifier'])) {
 <header>
     <h1>Ajout d'un Commentaire</h1>
     <nav>
+        <a href="joueurs.php">Gérer les Joueurs</a>
+        <a href="matchs.php">Gérer les Matchs</a>
+        <a href="statistiques.php">Statistiques</a>
         <a href="commentaireJoueur.php">Retour à la liste des commentaires</a>
     </nav>
 </header>

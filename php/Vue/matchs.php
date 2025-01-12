@@ -1,5 +1,11 @@
 <?php
 
+session_start();
+if($_SESSION['connexion']==false){
+    header('Location: index.php');
+    exit();
+}
+
 use Controleur\GetAllMatchs;
 use Controleur\SupprimerMatch;
 
@@ -33,6 +39,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_match'])) {
 <header>
     <h1>Gestion des Matchs</h1>
     <nav>
+        <a href="joueurs.php">Gérer les Joueurs</a>
+        <a href="statistiques.php">Statistiques</a>
         <a href="dashboard.php">Retour</a>
     </nav>
 </header>
