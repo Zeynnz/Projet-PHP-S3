@@ -44,5 +44,6 @@ CREATE TABLE IF NOT EXISTS Participer (
             Titulaire_Remplacant VARCHAR(50),
             Poste VARCHAR(50),
             PRIMARY KEY(Id_Joueur, Id_Match),
+            FOREIGN KEY(Id_Joueur) REFERENCES Joueur(Id_Joueur),
             FOREIGN KEY(Id_Match) REFERENCES Matchs(Id_Match)
 );
