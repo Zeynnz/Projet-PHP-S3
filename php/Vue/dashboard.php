@@ -21,7 +21,7 @@ if($_SESSION['connexion']==false){
         <a href="joueurs.php">Gérer les Joueurs</a>
         <a href="matchs.php">Gérer les Matchs</a>
         <a href="statistiques.php">Statistiques</a>
-        <a href="index.php">Déconnexion</a>
+        <a href="deconnexion.php">Déconnexion</a>
     </nav>
 </header>
 <main>
