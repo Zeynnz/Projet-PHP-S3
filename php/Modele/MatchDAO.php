@@ -99,4 +99,26 @@ class MatchDAO extends DAO
 
         return $matchs;
     }
+
+    function getWinRate()
+    {
+        // Récupérer le total des matchs et des victoires
+        $query = $this->pdo->prepare('SELECT COUNT(*) AS total_matchs,SUM(CASE WHEN victoire = TRUE THEN 1 ELSE 0 END) AS victoires
+        FROM matchs');
+        $query->execute();
+
+        // Récupérer les résultats
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+
+        // Si aucun match n'est trouvé, retourner 0
+        if ($result['total_matchs'] == 0) {
+            return 0;
+        }
+
+        // Calcul du pourcentage de victoires
+        $winRate = ($result['victoires'] / $result['total_matchs']) * 100;
+
+        // Retourner le pourcentage de victoires arrondi à 2 décimales
+        return round($winRate, 2);
+    }
 }

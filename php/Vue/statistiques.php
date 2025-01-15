@@ -1,9 +1,43 @@
 <?php
+
+use Controleur\GetAllJoueurs;
+use Controleur\GetStatsMatchs;
+use Controleur\GetEtatsJoueurs;
+use Controleur\getStatsJoueurs;
+
+require_once __DIR__ . '/../Controleur/GetAllJoueurs.php';
+require_once __DIR__ . '/../Controleur/GetEtatsJoueurs.php';
+require_once __DIR__ . '/../Controleur/getStatsJoueurs.php';
+require_once __DIR__ . '/../Controleur/GetStatsMatchs.php';
+
 session_start();
 if($_SESSION['connexion']==false){
     header('Location: index.php');
     exit();
 }
+
+$joueurs = (new GetAllJoueurs())->executer();
+
+$wrMatch = (new GetStatsMatchs())->getWRMatchs();
+$lrMatch = 100-$wrMatch;
+
+
+foreach($joueurs as $joueur){
+    $stats[] = [
+        'id_joueur' => $joueur['id_joueur'],
+        'nb_titu' => (new GetEtatsJoueurs($joueur['id_joueur']))->executeTitulaire() ?? 0,
+        'nb_rempl' => (new GetEtatsJoueurs($joueur['id_joueur']))->executeRemplacant() ?? 0,
+        'wr' => (new getStatsJoueurs($joueur['id_joueur']))->getWinRate() ?? 0,
+        'moyenne' => (new getStatsJoueurs($joueur['id_joueur']))->getMoyenneNote() ?? 0,
+    ];
+}
+
+
+
+
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +60,7 @@ if($_SESSION['connexion']==false){
 </header>
 <main>
     <h2>Résultats des matchs</h2>
-    <p>Victoire : 50%, Défaite : 30%, Nul : 20%</p>
+    <p>Victoire :<?php echo htmlspecialchars($wrMatch) ?> %, Défaite : <?php echo htmlspecialchars($lrMatch) ?> %</p>
     <h2>Statistiques des joueurs</h2>
     <table>
         <thead>
@@ -41,15 +75,17 @@ if($_SESSION['connexion']==false){
         </tr>
         </thead>
         <tbody>
-        <!-- Boucle PHP ici -->
+        <?php foreach ($joueurs as $index => $joueur):?>
         <tr>
-            <td>Joueur 1</td>
-            <td>Actif</td>
-            <td>Attaquant</td>
-            <td>5</td>
-            <td>2</td>
-            <td>4.5</td>
-            <td>60%</td>
+            <td> <span><?php echo htmlspecialchars($joueur['nom'])?> </span>
+                <span><?php echo htmlspecialchars($joueur['prenom'])?></span> </td>
+            <td> <?php echo htmlspecialchars($joueur['statut'])?> </td>
+            <td> <?php echo htmlspecialchars($joueur['poste_prefere'])?> </td>
+            <td><?php echo htmlspecialchars($stats[$index]['nb_titu']) ?></td>
+            <td><?php echo htmlspecialchars($stats[$index]['nb_rempl']) ?></td>
+            <td><?php echo number_format($stats[$index]['moyenne'], 2) ?></td>
+            <td><?php echo htmlspecialchars($stats[$index]['wr']) ?>%</td>
+        <?php endforeach;?>
         </tr>
         </tbody>
     </table>

@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Pré-remplissage des valeurs reçues
         $numeroLicence = $_POST['numero_licence'] ?? '';
         $statut = $_POST['statut'] ?? '';
-        $poste = $_POST['poste_prefere'] ?? '';
+        $poste = $_POST['poste'] ?? '';
         $dateNaissance = $_POST['date_naissance'] ?? '';
         $poids = $_POST['poids'] ?? '';
         $taille = $_POST['taille'] ?? '';
@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div>
             <label for="poste">Poste :</label>
             <select id="poste" name="poste" required>
-                <option value="Top" <?php echo ($poste === 'Top') ? 'selected' : ''; ?>>Top</option>
+                <option value="Top"<?php echo ($poste === 'Top') ? 'selected' : ''; ?>>Top</option>
                 <option value="Jungle" <?php echo ($poste === 'Jungle') ? 'selected' : ''; ?>>Jungle</option>
                 <option value="Mid" <?php echo ($poste === 'Mid') ? 'selected' : ''; ?>>Mid</option>
                 <option value="Adc" <?php echo ($poste === 'Adc') ? 'selected' : ''; ?>>Adc</option>
