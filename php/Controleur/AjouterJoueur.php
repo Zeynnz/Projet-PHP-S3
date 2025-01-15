@@ -1,7 +1,6 @@
 <?php
 namespace Controleur;
 
-use Modele\Joueur;
 use Modele\JoueurDAO;
 
 require_once __DIR__ . '/../Modele/JoueurDAO.php';
@@ -35,9 +34,9 @@ class AjouterJoueur
         $this->dao = new JoueurDAO();
     }
 
-    public function execute(): Joueur
+    public function execute()
     {
-        return $this->dao->Ajouter($this->numeroLicence, $this->statut, $this->postePrefere, $this->dateNaissance, $this->poids, $this->taille, $this->nom, $this->prenom);
+        $this->dao->Ajouter($this->numeroLicence, $this->statut, $this->postePrefere, $this->dateNaissance, $this->poids, $this->taille, $this->nom, $this->prenom);
 
     }
 

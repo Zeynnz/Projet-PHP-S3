@@ -3,6 +3,7 @@
 namespace Vue;
 
 use Controleur\GetAllJoueurs;
+use Controleur\GetOneJoueur;
 use Controleur\SupprimerJoueur;
 
 require_once __DIR__ . '/../Controleur/SupprimerJoueur.php';
@@ -17,8 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_joueur'])) {
     $id_joueur = intval($_POST['id_joueur']);
 
     // Instanciez la classe SupprimerJoueur
-    $supprimerJoueur = new SupprimerJoueur();
-    $supprimerJoueur->executer($id_joueur);
+    $supprimerJoueur = new SupprimerJoueur($id_joueur);
+    $supprimerJoueur->executer();
     header("Location: joueurs.php"); // Redirection pour que le cookie soit pris en compte
     exit();
 }
@@ -87,10 +88,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_joueur'])) {
                     <td>
                         <form method="POST" action="joueurs.php" >
                             <input type="hidden" name="id_joueur" value="<?php echo htmlspecialchars($joueur['id_joueur']); ?>">
-                            <button type="submit">Supprimer</button>
+                            <button id="supprimer" type="submit">Supprimer</button>
                         </form>
-
-
+                    </td>
+                    <td>
+                        <form method="POST" action="commentaireJoueur.php" >
+                            <input type="hidden" name="id_joueur" value="<?php echo htmlspecialchars($joueur['id_joueur']); ?>">
+                            <button type="submit">Commentaires</button>
+                        </form>
                     </td>
                 </tr>
                 <?php endforeach; ?>
@@ -102,10 +107,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_joueur'])) {
 <style>
     main {
         margin: 20px auto;
-        max-width: 60em;
+        max-width: 70em;
         padding: 1em;
         background: white;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    #supprimer{
+        background: #dc3545;
     }
 </style>
 </html>

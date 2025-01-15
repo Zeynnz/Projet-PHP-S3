@@ -2,11 +2,12 @@
 
 namespace Controleur;
 
+use Modele\Joueur;
 use Modele\JoueurDAO;
 
 require_once __DIR__ . '/../Modele/Joueur.php';
 require_once __DIR__ . '/../Modele/JoueurDAO.php';
-class SupprimerJoueur
+class GetOneJoueur
 {
     private $id_joueur;
     private $dao;
@@ -18,8 +19,8 @@ class SupprimerJoueur
     }
 
 
-    public function executer(): bool
+    public function executer(): Joueur
     {
-        return $this->dao->Supprimer($this->id_joueur);
+        return $this->dao->getOne($this->id_joueur);
     }
 }

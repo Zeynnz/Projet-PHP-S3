@@ -4,24 +4,34 @@ namespace Modele;
 
 class Matchs
     {
-    private $Date_Heure_Match;
+    private $Date_match;
+    private $Heure_match;
     private $Nom_Equipe_VS;
     private $Lieu_Rencontre;
     private $Resultat;
 
-    public function __construct($Date_Heure_Match,$Nom_Equipe_VS,$Lieu_Rencontre,$Resultat){
-        $this->Date_Heure_Match = $Date_Heure_Match;
+    public function __construct($Date_match,$Heure_match,$Nom_Equipe_VS,$Lieu_Rencontre,$Resultat){
+        $this->Date_match = $Date_match;
+        $this->Heure_match = $Heure_match;
         $this->Nom_Equipe_VS = $Nom_Equipe_VS;
         $this->Lieu_Rencontre = $Lieu_Rencontre;
         $this->Resultat = $Resultat;
     }
 
-    public function getDateHeureMatch(){
-        return $this->Date_Heure_Match;
+    public function getDateMatch(){
+        return $this->Date_match;
     }
 
-    public function setDateHeureMatch($Date_Heure_Match){
-        $this->Date_Heure_Match = $Date_Heure_Match;
+    public function setDateMatch($Date_Match){
+        $this->Date_match = $Date_Match;
+    }
+
+    public function getHeureMatch(){
+        return $this->Heure_match;
+    }
+
+    public function setHeureMatch($Heure_Match){
+        $this->Heure_match = $Heure_Match;
     }
 
     public function getNomEquipeVS(){

@@ -14,7 +14,8 @@ CREATE TABLE IF NOT EXISTS Joueur (
 
 CREATE TABLE IF NOT EXISTS Matchs (
             Id_Match SERIAL,
-            Date_Heure_Match TIMESTAMP,
+            Date_Match DATE,
+            Heure_Match TIME,
             Nom_Equipe_VS VARCHAR(50),
             Lieu_Rencontre VARCHAR(50),
             Resultat VARCHAR(50),
@@ -30,7 +31,7 @@ CREATE TABLE IF NOT EXISTS Coach (
 
 CREATE TABLE IF NOT EXISTS Commentaire (
             Id_Commentaire SERIAL,
-            Commentaire VARCHAR(50),
+            Commentaire TEXT,
             Id_Joueur INT NOT NULL,
             PRIMARY KEY(Id_Commentaire),
             FOREIGN KEY(ID_Joueur) REFERENCES Joueur(ID_Joueur)

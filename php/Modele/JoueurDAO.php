@@ -15,7 +15,7 @@ class JoueurDAO extends DAO
         parent::__construct();
     }
 
-    function Ajouter($NumLicence="", $Statut = "",$PostePrefere="",$DateNaissance="",$Poids=0,$Taille=0,$Nom="",$Prenom=""): Joueur
+    function Ajouter($NumLicence="", $Statut = "",$PostePrefere="",$DateNaissance="",$Poids=0,$Taille=0,$Nom="",$Prenom="")
     {
         $add = $this->pdo->prepare('INSERT INTO joueur(numero_licence, statut, poste_prefere, date_naissance, poids, taille, nom, prenom) 
         VALUES(:numero_licence, :statut, :poste_prefere, :date_naissance, :poids, :taille, :nom, :prenom)');
@@ -30,10 +30,14 @@ class JoueurDAO extends DAO
             'prenom' => $Prenom
         ));
 
-        return new joueur($NumLicence,$Statut,$PostePrefere,$DateNaissance,$Poids,$Taille,$Nom,$Prenom);
+        if($add->rowCount() > 0){
+            return true;
+        }else{
+            return false;
+        }
     }
 
-    function Supprimer($id_joueur=0)
+    function Supprimer($id_joueur)
     {
         $delete = $this->pdo->prepare('DELETE FROM joueur WHERE id_joueur = :id_joueur');
         $delete->execute(array('id_joueur' => $id_joueur));
@@ -68,28 +72,44 @@ class JoueurDAO extends DAO
                 'prenom' => $prenom,
             ));
 
-            return new Joueur($numero_licence,$statut,$poste_prefere,$date_naissance,$poids,$taille,$nom,$prenom);
+        if($alter->rowCount() > 0){
+            return true;
+        }else{
+            return false;
+        }
 
     }
 
     function getOne($id_joueur)
     {
-        $query = $this->pdo->query('SELECT * FROM joueur');
-        $joueurs = $query->fetchAll(PDO::FETCH_ASSOC);
+        $query = $this->pdo->prepare('SELECT * FROM joueur WHERE id_joueur = :id_joueur');
+        $query->execute(array('id_joueur' => $id_joueur));
+        $joueur = $query->fetch();
 
-        foreach ($joueurs as $joueur) {
-            if ($joueur->id_joueur = $id_joueur) {
-                return $joueur;
-            }
+        if ($joueur) {
+            // Si un joueur est trouvé, renvoyez un objet Joueur
+            return new Joueur(
+                $joueur['numero_licence'],
+                $joueur['statut'],
+                $joueur['poste_prefere'],
+                $joueur['date_naissance'],
+                $joueur['poids'],
+                $joueur['taille'],
+                $joueur['nom'],
+                $joueur['prenom']
+            );
         }
-        return new Joueur($joueur->numero_licence, $joueur->statut, $joueur->poste_prefere, $joueur->date_naissance, $joueur->poids, $joueur->taille, $joueur->nom, $joueur->prenom);
 
+        // Retournez null si aucun joueur n'est trouvé
+        return null;
     }
+
 
     function getAll(): array
     {
-        $query = $this->pdo->query('SELECT * FROM joueur');
-        $joueurs = $query->fetchAll(PDO::FETCH_ASSOC);
+        $query = $this->pdo->prepare('SELECT * FROM joueur ORDER BY 1');
+        $query->execute(array());
+        $joueurs = $query->fetchAll();
 
         return $joueurs;
     }

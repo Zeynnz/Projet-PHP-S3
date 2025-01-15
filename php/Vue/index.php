@@ -66,10 +66,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <label for="login">Nom d'utilisateur :</label>
         <input type="text" id="login" name="login" required>
         <label for="password">Mot de passe :</label>
-        <input type="password" id="password" name="password" required>
-        <button type="submit">Se connecter</button>
-        <button onclick="window.location.href='inscription.php'">S'inscrire</button>
+        <input type="password" id="password" name="password" required><br><br>
+    <button type="submit">Se connecter</button>
     </form>
+    <button onclick="window.location.href='inscription.php'">S'inscrire</button>
 </div>
 </body>
 </html>
