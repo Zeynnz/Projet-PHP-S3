@@ -4,10 +4,7 @@ use Controleur\GetAllCoachs;
 require_once __DIR__ . '/../Controleur/GetAllCoachs.php';
 
 session_start();
-if($_SESSION['connexion']==false){
-    header('Location: index.php');
-    exit();
-}
+
 
 if (isset($_COOKIE['user_login'])) {
     $_SESSION['connexion'] = true;

@@ -18,13 +18,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nom_equipe_vs = $_POST['nom_equipe_vs'];
     $lieu_rencontre = $_POST['lieu_rencontre'];
     $resultat = $_POST['resultat'];
+    $victoire = $_POST['victoire'];
 
 
     if (!preg_match('/^\d+-\d+$/', $resultat)) {
         $error_message = "Le format du résultat doit être sous la forme 'chiffre-chiffre' (exemple : 2-1).";
     } else {
         // Si le format est correct, ajouter le match
-        $ajoutMatch = new AjouterMatch($date_match, $heure_match, $nom_equipe_vs, $lieu_rencontre, $resultat);
+        $ajoutMatch = new AjouterMatch($date_match, $heure_match, $nom_equipe_vs, $lieu_rencontre, $resultat,$victoire);
         $result = $ajoutMatch->execute();
 
         if ($result) {
@@ -73,6 +74,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div>
             <label for="resultat">Résultat :</label>
             <input type="text" id="resultat" name="resultat" required>
+        </div>
+        <div>
+            <label for="victoire">Victoire :</label>
+            <select id="victoire" name="victoire" required>
+                <option value="True">Victoire</option>
+                <option value="False">Défaite</option>
+            </select>
         </div>
 
         <?php if (isset($error_message)) : ?>

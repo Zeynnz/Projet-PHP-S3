@@ -55,6 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_match'])) {
             <th>Adversaire</th>
             <th>Lieu</th>
             <th>Résultat</th>
+            <th>Victoire</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -66,6 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_match'])) {
             <td><?php echo htmlspecialchars($match['nom_equipe_vs']);?></td>
             <td><?php echo htmlspecialchars($match['lieu_rencontre']);?></td>
             <td><?php echo htmlspecialchars($match['resultat']);?></td>
+            <td><?php echo ($match['victoire']) ? 'Victoire' : 'Défaite';?></td>
             <td id="actions">
                 <form method="post" action="ModifierMatch.php">
                     <input type="hidden" name="id_match" value="<?php echo htmlspecialchars($match['id_match']);?>">
@@ -74,6 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_match'])) {
                     <input type="hidden" name="nom_equipe_vs" value="<?php echo htmlspecialchars($match['nom_equipe_vs']);?>">
                     <input type="hidden" name="lieu_rencontre" value="<?php echo htmlspecialchars($match['lieu_rencontre']);?>">
                     <input type="hidden" name="resultat" value="<?php echo htmlspecialchars($match['resultat']);?>">
+                    <input type="hidden" name="victoire" value="<?php echo htmlspecialchars($match['victoire']);?>">
 
                     <button type="submit"> Modifier</button>
                 </form>

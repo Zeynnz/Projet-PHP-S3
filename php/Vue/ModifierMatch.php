@@ -22,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $nom_equipe_vs = $_POST['nom_equipe_vs'] ?? '';
         $lieu_rencontre = $_POST['lieu_rencontre'] ?? '';
         $resultat = $_POST['resultat'] ?? '';
+        $victoire = $_POST['victoire'] ?? '';
 
         // Si le formulaire est soumis pour modification
         if (isset($_POST['modifier'])) {
@@ -31,7 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $heure_match,
                 $nom_equipe_vs,
                 $lieu_rencontre,
-                $resultat
+                $resultat,
+                $victoire
             );
             $result = $modifiermatch->execute();
 
@@ -83,7 +85,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="resultat">Résultat :</label>
             <input type="text" id="resultat" name="resultat" value="<?php echo htmlspecialchars($resultat); ?>" required>
         </div>
-
+        <div>
+            <select id="victoire" name="victoire" required>
+                <option value="True" <?php echo ($victoire === 'True') ? 'selected' : ''; ?>>Victoire</option>
+                <option value="False" <?php echo ($victoire === 'False') ? 'selected' : ''; ?>>Défaite</option>
+            </select>
+        </div>
 
         <div>
             <button type="submit" name="modifier">Modifier</button>

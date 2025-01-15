@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         <div>
             <label for="poste">Poste :</label>
-            <select id="poste" name="poste" required>
+            <select id="poste" name="poste"  required>
                 <option value="Top">Top</option>
                 <option value="Jungle">Jungle</option>
                 <option value="Mid">Mid</option>

@@ -81,7 +81,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         <div>
             <label for="poste">Poste :</label>
-            <input type="text" id="poste" name="poste" value="<?php echo htmlspecialchars($poste); ?>" required>
+            <select id="poste" name="poste" required>
+                <option value="Top" <?php echo ($poste === 'Top') ? 'selected' : ''; ?>>Top</option>
+                <option value="Jungle" <?php echo ($poste === 'Jungle') ? 'selected' : ''; ?>>Jungle</option>
+                <option value="Mid" <?php echo ($poste === 'Mid') ? 'selected' : ''; ?>>Mid</option>
+                <option value="Adc" <?php echo ($poste === 'Adc') ? 'selected' : ''; ?>>Adc</option>
+                <option value="Support" <?php echo ($poste === 'Support') ? 'selected' : ''; ?>>Support</option>
+            </select>
         </div>
         <div>
             <label for="date_naissance">Date de Naissance :</label>

@@ -49,16 +49,12 @@ class MatchDAO extends DAO
 
     }
 
-    function Modifier($id_match,$Date_match,$Heure_match,$Nom_Equipe_VS,$Lieu_Rencontre,$Resultat,$unused=null,$unused1=null,$unused2=null)
+    function Modifier($id_match,$Date_match,$Heure_match,$Nom_Equipe_VS,$Lieu_Rencontre,$Resultat,$Victoire)
     {
-        $getmatchs = $this->pdo->prepare('SELECT * FROM matchs WHERE id_match = :id_match');
-        $getmatchs->execute(array('id_match' => $id_match));
-
-
         // Requête d'insertion
         $alter = $this->pdo->prepare('UPDATE matchs SET date_match = :date_match, 
                                          heure_match = :heure_match, nom_equipe_vs= :nom_equipe_vs, lieu_rencontre = :lieu_rencontre,
-                                         resultat = :resultat WHERE id_match = :id_match');
+                                         resultat = :resultat ,victoire= :victoire WHERE id_match = :id_match');
         $alter->execute(array(
             'id_match' => $id_match,
             'date_match' => $Date_match,
@@ -66,6 +62,7 @@ class MatchDAO extends DAO
             'nom_equipe_vs' => $Nom_Equipe_VS,
             'lieu_rencontre' => $Lieu_Rencontre,
             'resultat' => $Resultat,
+            'victoire' => $Victoire
         ));
 
         if($alter->rowCount() > 0){
