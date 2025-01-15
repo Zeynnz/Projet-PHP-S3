@@ -15,17 +15,18 @@ class MatchDAO extends DAO
         parent::__construct();
     }
 
-    function Ajouter($Date_match,$Heure_match,$Nom_Equipe_VS,$Lieu_Rencontre,$Resultat)
+    function Ajouter($Date_match,$Heure_match,$Nom_Equipe_VS,$Lieu_Rencontre,$Resultat,$Victoire)
 
     {
-        $add = $this->pdo->prepare('INSERT INTO matchs(date_match, heure_match, nom_equipe_vs, lieu_rencontre, resultat) 
-        VALUES(:date_match, :heure_match, :nom_equipe_vs, :lieu_rencontre, :resultat)');
+        $add = $this->pdo->prepare('INSERT INTO matchs(date_match, heure_match, nom_equipe_vs, lieu_rencontre, resultat, victoire) 
+        VALUES(:date_match, :heure_match, :nom_equipe_vs, :lieu_rencontre, :resultat, :victoire)');
         $add->execute(array(
             'date_match' => $Date_match,
             'heure_match' => $Heure_match,
             'nom_equipe_vs' => $Nom_Equipe_VS,
             'lieu_rencontre' => $Lieu_Rencontre,
             'resultat' => $Resultat,
+            'victoire' => $Victoire
         ));
 
         if($add->rowCount() > 0){

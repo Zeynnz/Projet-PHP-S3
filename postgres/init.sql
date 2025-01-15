@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS Matchs (
             Nom_Equipe_VS VARCHAR(50),
             Lieu_Rencontre VARCHAR(50),
             Resultat VARCHAR(50),
+            Victoire bool,
             PRIMARY KEY(Id_Match)
 );
 
