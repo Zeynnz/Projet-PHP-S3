@@ -5,10 +5,7 @@ use Controleur\AjouterCoach;
 require_once __DIR__ . "/../Controleur/AjouterCoach.php";
 
 session_start();
-if($_SESSION['connexion']==false){
-    header('Location: index.php');
-    exit();
-}
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $login = trim($_POST['login']);
@@ -29,12 +26,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $controller->execute(); // Le contrôleur doit gérer les exceptions pour utilisateur existant
         $_SESSION['reussi'] = "L'utilisateur a été créé avec succès.";
         header('Location: index.php');
+        exit();
     } catch (Exception $e) {
         $_SESSION['error'] = $e->getMessage();
     }
 
-    header('Location: inscription.php');
-    exit;
 }
 ?>
 

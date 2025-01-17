@@ -23,10 +23,9 @@ class AjouterCoach
         $this->dao = new CoachDAO();
     }
 
-    public function execute(): Coach
+    public function execute()
     {
         return $this->dao->Ajouter($this->identifiant, $this->motDePasse);
-
     }
 
 
