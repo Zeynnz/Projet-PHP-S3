@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </script>
     <?php unset($_SESSION['error']); ?>
 <?php endif; ?>
-<div class="container">
+<div class="login-container">
     <h1>Connexion</h1>
     <form method="POST">
         <label for="login">Nom d'utilisateur :</label>
@@ -73,4 +73,61 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <button onclick="window.location.href='inscription.php'">S'inscrire</button>
 </div>
 </body>
+<style>
+
+    body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f5f5f5; /* Couleur de fond */
+        font-family: Arial, sans-serif;
+    }
+
+    /* Style pour le conteneur */
+    .login-container {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 350px;
+    }
+
+    /* Titre */
+    .login-container h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    }
+
+    /* Champs de formulaire */
+    .login-container input[type="text"],
+    .login-container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    }
+
+    /* Boutons */
+    .login-container button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    }
+
+    .login-container button:hover {
+     background-color: #0056B3;
+    }
+
+</style>
 </html>
